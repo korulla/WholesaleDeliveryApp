@@ -9,5 +9,26 @@
     <h3>Truck Driver Managment</h3>
     <a href="editTd.html"><button>Edit Existing Data</button></a>
     <a href="newTd.html"><button>Add new Data</button></a>
+    <a href="deletetd.html"><button>Delete Data</button></a><br>
+
+
+    <h3>View Truck Driver Details</h3>
+
+    <button type="button" id="viewAllButton">View All</button>
+
+    <br>
+    <form id="viewByIdForm">
+        <label for="viewTdId">Enter ID to View</label>
+        
+        <input type="text" name="viewTdId" id="viewTdId">
+
+        <button type="button" id="viewByIdButton">View By ID</button>
+    </form>
+    <div id="truckDriverDetails"></div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/script.js" type="module"></script> 
 </body>
 </html>

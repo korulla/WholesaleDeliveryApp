@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Delete Truck driver details</h3>
+<form id="deleteTruckDriverForm">
+    <label for="deleteTdId">Enter The unique ID</label>
+    <input type="text" name="deleteTdId" id="deleteTdId"><br>
+
+    <div id="truckDriverDetails"></div>
+
+    <button type="button" id="showDetailsButton">Show Details</button>
+    <button type="button" id="confirmDeleteButton">Confirm Delete</button>
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/deleteTd.js" type="module"></script> 
+</form>
+</body>
+</html>

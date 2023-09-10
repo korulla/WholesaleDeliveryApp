@@ -16,7 +16,7 @@
  // Initialize firestore
  const db = firebase.firestore();
 
-// '''''''''GETTING DATA FROM ADMIN FOR TRUCK DRIVER DETAILS'''''''''''''''
+// '''''''''GETTING DATA FROM ADMIN FOR TRUCK DRIVER DETAILS AND CREATING '''''''''''''''
 
 const addTruckDriverButton = document.getElementById('addTdButton');
 addTruckDriverButton.addEventListener('click', addTruckDriver);
@@ -27,23 +27,41 @@ function addTruckDriver() {
   const mobileNumber = document.getElementById('addTdMob').value;
   const address = document.getElementById('addTdAdress').value;
   const drivingLicense = document.getElementById('addTdLicense').value;
+  const id = document.getElementById('addTdId').value;
 
-  // Create a JavaScript object with the data
-  const truckDriverData = {
-      name: name,
-      mobileNumber: mobileNumber,
-      address: address,
-      drivingLicense: drivingLicense
-  }
+  // Check if the ID already exists in the collection
+  db.collection('truckDrivers')
+    .where('id', '==', id)
+    .get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // Show an error if the ID is already in use
+        alert('This ID is already in use. Please choose a different one.');
+      } else {
+        // Create a JavaScript object with the data
+        const truckDriverData = {
+          name: name,
+          mobileNumber: mobileNumber,
+          address: address,
+          drivingLicense: drivingLicense,
+          id: id
+        };
 
-  // Adding the data to Firebase inside this function
-  db.collection('truckDrivers').add(truckDriverData)
-      .then(function (docRef) {
-          console.log('Document written with ID: ', docRef.id);
-          // Clear the form after successful submission
-          document.getElementById('truckDriverForm').reset();
-      })
-      .catch(function (error) {
-          console.error('Error adding document: ', error);
-      });
+        // Use the provided ID as the document ID
+        db.collection('truckDrivers')
+          .doc(id)
+          .set(truckDriverData)
+          .then(function () {
+            console.log('Document written with ID: ', id);
+            // Clear the form after successful submission
+            document.getElementById('truckDriverForm').reset();
+          })
+          .catch(function (error) {
+            console.error('Error adding document: ', error);
+          });
+      }
+    })
+    .catch(function (error) {
+      console.error('Error checking for existing ID: ', error);
+    });
 }

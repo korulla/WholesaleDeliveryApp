@@ -7,5 +7,28 @@
 </head>
 <body>
     <h3>Edit existing Truck driver details</h3>
+    <form id="editTruckDriverForm">
+        <label for="editTd">Name</label>
+        <input type="text" name="addTd" id="editTdName"><br>
+
+        <label for="editTdId">unique ID</label>
+        <input type="text" name="addTdId" id="editTdId"><br>
+
+        <label for="editTdMob">Mobile</label>
+        <input type="text" name="addTdMob" id="editTdMob"><br>
+
+        <label for="editTdAdress">Adress</label>
+        <input type="text" name="addTdAdress" id="editTdAdress"><br>
+
+        <label for="editTdLicense">License</label>
+        <input type="text" name="addTdLicense" id="editTdLicense"><br>
+
+        <button type="button" id="editTdButton">Confirm Edit</button>
+    </form>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/tdEdit.js" type="module"></script> 
 </body>
 </html>
