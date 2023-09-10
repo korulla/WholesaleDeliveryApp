@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Add new Truck driver Details</h3> 
+    <div>
+        <form id="truckDriverForm">
+            <label for="addTd">Name</label>
+            <input type="text" name="addTd" id="addTdName"><br>
+
+            <label for="addTdMob">Mobile</label>
+            <input type="text" name="addTdMob" id="addTdMob"><br>
+
+            <label for="addTdAdress">Adress</label>
+            <input type="text" name="addTdAdress" id="addTdAdress"><br>
+
+            <label for="addTdLicense">License</label>
+            <input type="text" name="addTdLicense" id="addTdLicense"><br>
+
+            <button type="button" id="addTdButton">Add truck driver</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/truckDriver.js" type="module"></script>  
+</body>
+</html>
