@@ -6,8 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Add Vendor and Product</h1>
-    <form id="vendorForm">
+    <form id="editvendorForm">
 
         <label for="vendorName">Vendor Name</label>
         <input type="text" name="vendorName" id="vendorName"><br>
@@ -30,7 +29,7 @@
 
     <hr>
 
-    <form id="productForm">
+    <form id="editproductForm">
 
         <label for="pvendorId">Enter the vendor ID</label>
         <input type="text" name="pvendorId" id="productVendorId"><br>
@@ -47,10 +46,5 @@
         <button type="submit">Add Product</button>
         
     </form>
-
-
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
-    <script src="/functions/Javascript/newVendor.js" type="module"></script>
 </body>
 </html>

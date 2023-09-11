@@ -7,18 +7,33 @@
     <!-- <link rel="stylesheet" href="./Styles/vendor.css"> -->
 </head>
 <body>
-    <div class="vendorsList">
-       <!-- <h3><button id="britania">Britania</button></h3> -->
+
+    <!-- Display Vendors -->
+    <div id="vendor-list">
+        <!-- Vendor names will be dynamically added here -->
     </div>
 
-    <hr>
-
-    <div class="products" id="products">
-        <!-- <h5>Biscuit<h5 class="noItems">0</h5><button class="plusButton">+</button><button class="minusButton">-</button></h5>
-        <h5>Choclate<h5 class="noItems">0</h5><button class="plusButton">+</button><button class="minusButton">-</button></h5> -->
+    <!-- Display Products -->
+    <div id="product-list">
+        <!-- Product names will be dynamically added here -->
     </div>
 
+    <!-- Product Details -->
+    <div id="product-details">
+        <!-- Product details will be displayed here when a product is clicked -->
+    </div>
 
-    <script src="/functions/Javascript/userProduct.js"></script>
+    <!-- Cart -->
+    <div id="cart">
+        <!-- Cart content will be displayed here -->
+        <h2>Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total Price: $<span id="total-price">0.00</span></p>
+        <button id="place-order">Place Order</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/userProduct.js" type="module"></script>
 </body>
 </html>
