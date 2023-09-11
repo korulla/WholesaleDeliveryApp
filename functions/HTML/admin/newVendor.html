@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Vendor and Product</h1>
+    <form id="vendorForm">
+
+        <label for="vendorName">Vendor Name</label>
+        <input type="text" name="vendorName" id="vendorName"><br>
+
+        <label for="vendorId">Vendor unique ID</label>
+        <input type="text" name="vendorId" id="vendorId"><br>
+
+        <label for="vendorLocation">Vendor Location</label>
+        <input type="text" name="vendorLocation" id="vendorLocation"><br>
+
+        <label for="vendorMob">Vendor Mobile number</label>
+        <input type="text" name="vendorMob" id="vendorMob"><br>
+
+        <label for="vendorEmail">Vendor Email adress</label>
+        <input type="text" name="vendorEmail" id="vendorEmail"><br>
+
+        <button type="submit">Add Vendor</button>
+
+    </form>
+
+    <hr>
+
+    <form id="productForm">
+
+        <label for="pvendorId">Enter the vendor ID</label>
+        <input type="text" name="pvendorId" id="productVendorId"><br>
+
+        <label for="productName">Product Name</label>
+        <input type="text" name="productName" id="productName"><br>
+
+        <label for="productPrice">Product Price</label>
+        <input type="text" name="productPrice" id="productPrice"><br>
+
+        <label for="productCategory">Product Category</label>
+        <input type="text" name="productCategory" id="productCategory"><br>
+        
+        <button type="submit">Add Product</button>
+        
+    </form>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/newVendor.js"></script>
+</body>
+</html>
