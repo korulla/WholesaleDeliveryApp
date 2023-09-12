@@ -7,6 +7,7 @@
 </head>
 <body>
 
+
     <h1>Check and Edit Vendor/Product</h1>
 
     <!-- Check Vendor/Product Form -->
@@ -54,8 +55,10 @@
     <!-- Editing Form for Product -->
     <form id="editProductForm" style="display: none;">
         <!-- Product editing fields -->
+    <div class="productID" style="display: none;">
         <label for="editProductVendorId">Edit Product Vendor ID</label>
         <input type="text" name="editProductVendorId" id="editProductVendorId"><br>
+    </div>
         <label for="editProductName">Edit Product Name</label>
         <input type="text" name="editProductName" id="editProductName"><br>
         <label for="editProductPrice">Edit Product Price</label>
@@ -65,11 +68,25 @@
         <button type="submit">Save Product Changes</button>
     </form>
 
-
     <h2>Edit the product or vendor Information</h2>
     <!-- "Edit Vendor" and "Edit Product" buttons -->
     <button id="editVendorButton">Edit Vendor</button>
-    <button id="editProductButton">Edit Product</button>
+    <button id="editProductButton">Edit Product</button><br>
+
+    <!-- Show Vendors and Products Buttons -->
+    <button id="showVendorsButton">Show Vendors</button>
+    <button id="showProductsButton">Show Products</button>
+
+    <!-- Product and Vendor Info Sections -->
+    <div id="productInfo" style="display: none;">
+        <h2>All Products:</h2>
+        <ul id="allProductsList"></ul>
+    </div>
+
+    <div id="vendorInfo" style="display: none;">
+        <h2>All Vendors:</h2>
+        <ul id="allVendorsList"></ul>
+    </div>
 
 
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>

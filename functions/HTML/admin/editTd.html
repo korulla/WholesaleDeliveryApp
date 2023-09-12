@@ -6,26 +6,45 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Edit existing Truck driver details</h3>
-    <form id="editTruckDriverForm">
-        <label for="editTd">Name</label>
-        <input type="text" name="addTd" id="editTdName"><br>
 
-        <label for="editTdId">unique ID</label>
-        <input type="text" name="addTdId" id="editTdId"><br>
-
-        <label for="editTdMob">Mobile</label>
-        <input type="text" name="addTdMob" id="editTdMob"><br>
-
-        <label for="editTdAdress">Adress</label>
-        <input type="text" name="addTdAdress" id="editTdAdress"><br>
-
-        <label for="editTdLicense">License</label>
-        <input type="text" name="addTdLicense" id="editTdLicense"><br>
-
-        <button type="button" id="editTdButton">Confirm Edit</button>
+    <h3>Edit Truck Driver Details</h3>
+    <!-- Check Truck Driver by ID -->
+    <form id="checkTruckDriverForm">
+        <label for="checkTdId">Enter Truck Driver ID to Check</label>
+        <input type="text" name="checkTdId" id="checkTdId" required>
+        <button type="button" id="checkTdButton">Check Truck Driver</button>
     </form>
 
+    <!-- Display Truck Driver Details -->
+    <div id="truckDriverResult" style="display: none;">
+        <h4>Truck Driver Details:</h4>
+        <p><strong>Name:</strong> <span id="tdName"></span></p>
+        <p><strong>ID:</strong> <span id="tdId"></span></p>
+        <p><strong>Mobile Number:</strong> <span id="tdMobileNumber"></span></p>
+        <p><strong>Driving License:</strong> <span id="tdDrivingLicense"></span></p>
+        <p><strong>Address:</strong> <span id="tdAddress"></span></p>
+        <button type="button" id="editTdButton">Edit Truck Driver</button>
+    </div>
+
+    <!-- Edit Truck Driver Form -->
+    <form id="editTruckDriverForm" style="display: none;">
+        <label for="editTdName">Name</label>
+        <input type="text" name="addTd" id="editTdName"><br>
+        <label for="editTdMobileNumber">Mobile Number</label>
+        <input type="text" name="addTdMobileNumber" id="editTdMobileNumber"><br>
+        <label for="editTdDrivingLicense">Driving License</label>
+        <input type="text" name="addTdDrivingLicense" id="editTdDrivingLicense"><br>
+        <label for="editTdAddress">Address</label>
+        <input type="text" name="addTdAddress" id="editTdAddress"><br>
+        <button type="button" id="confirmEditTdButton">Confirm Edit</button>
+    </form>
+
+    <!-- Show All Truck Drivers -->
+    <button type="button" id="showAllTdButton">Show All Details</button>
+    <div id="allTruckDrivers" style="display: none;">
+        <h4>All Truck Drivers:</h4>
+        <ul id="truckDriverList"></ul>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
