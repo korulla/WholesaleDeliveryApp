@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- Display Orders -->
+    <h1>Orders</h1>
+    <div id="order-list">
+        <!-- Order details will be dynamically added here -->
+    </div>
+
+    <!-- Edit Order -->
+    <h2>Edit Order</h2>
+    <div id="edit-order">
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name">
+        <ul id="edit-items">
+            <!-- Editable order items will be added here -->
+        </ul>
+        <button id="update-order">Update Order</button>
+    </div>
+
+        <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/adminOrder.js" type="module"></script>
+
+</body>
+</html>

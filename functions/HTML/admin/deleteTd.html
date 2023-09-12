@@ -14,7 +14,14 @@
     <div id="truckDriverDetails"></div>
 
     <button type="button" id="showDetailsButton">Show Details</button>
-    <button type="button" id="confirmDeleteButton">Confirm Delete</button>
+    <button type="button" id="confirmDeleteButton">Confirm Delete</button><br>
+
+        <!-- Show All Truck Drivers -->
+        <button type="button" id="showAllTdButton">Show All Details</button>
+        <div id="allTruckDrivers" style="display: none;">
+            <h4>All Truck Drivers:</h4>
+            <ul id="truckDriverList"></ul>
+        </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>

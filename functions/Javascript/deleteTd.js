@@ -65,3 +65,48 @@ const firebaseConfig = {
               console.error('Error deleting document:', error);
           });
   });
+
+  // Function to toggle the display of all truck driver details
+function toggleAllTruckDrivers() {
+    const allTruckDrivers = document.getElementById('allTruckDrivers');
+    const showAllTdButton = document.getElementById('showAllTdButton');
+  
+    if (allTruckDrivers.style.display === 'none' || allTruckDrivers.style.display === '') {
+        showAllTruckDrivers(); // Calling the function to populate the list
+        allTruckDrivers.style.display = 'block';
+        showAllTdButton.textContent = 'Hide All Details';
+    } else {
+        allTruckDrivers.style.display = 'none';
+        showAllTdButton.textContent = 'Show All Details';
+    }
+  }
+  
+  // Function to populate the list of all truck drivers
+  function showAllTruckDrivers() {
+    const allTruckDrivers = document.getElementById('allTruckDrivers');
+    const truckDriverList = document.getElementById('truckDriverList');
+  
+    // Clear previous list
+    truckDriverList.innerHTML = '';
+  
+    db.collection('truckDrivers').get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const truckDriverData = doc.data();
+                // Create list item with all details
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>Name:</strong> ${truckDriverData.name || ''}<br>` +
+                                    `<strong>ID:</strong> ${doc.id}<br>` +
+                                    `<strong>Mobile Number:</strong> ${truckDriverData.mobileNumber || ''}<br>` +
+                                    `<strong>Driving License:</strong> ${truckDriverData.drivingLicense || ''}<br>` +
+                                    `<strong>Address:</strong> ${truckDriverData.address || ''}`;
+                truckDriverList.appendChild(listItem);
+            });
+        })
+        .catch((error) => {
+            console.error('Error getting truck drivers:', error);
+        });
+  }
+
+const showAllTdButton = document.getElementById('showAllTdButton');
+showAllTdButton.addEventListener('click', toggleAllTruckDrivers);
