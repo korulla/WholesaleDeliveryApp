@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <h1>Check and Edit Vendor/Product</h1>
+
+    <!-- Check Vendor/Product Form -->
+    <form id="checkForm">
+        <label for="checkId">Enter Vendor/Product ID to Check</label>
+        <input type="text" name="checkId" id="checkId" required><br>
+        <label for="checkType">Select Type</label>
+        <select name="checkType" id="checkType">
+            <option value="vendor">Vendor</option>
+            <option value="product">Product</option>
+        </select><br>
+        <button type="submit">Check</button>
+    </form>
+
+    <hr>
+
+    <!-- Display Vendor Information -->
+    <div id="vendorInfoDisplay" style="display: none;">
+        <h2>Vendor Information:</h2>
+        <p><strong>Name:</strong> <span id="vendorName"></span></p>
+        <p><strong>Location:</strong> <span id="vendorLocation"></span></p>
+        <p><strong>Mobile Number:</strong> <span id="vendorMob"></span></p>
+        <p><strong>Email Address:</strong> <span id="vendorEmail"></span></p>
+
+        <!-- Delete Vendor Button -->
+        <button id="deleteVendorButton" style="display: none;">Delete Vendor</button>
+    </div>
+
+    <!-- Display Product Information -->
+    <div id="productInfoDisplay" style="display: none;">
+        <h2>Product Information:</h2>
+        <p><strong>Name:</strong> <span id="productName"></span></p>
+        <p><strong>Price:</strong> <span id="productPrice"></span></p>
+        <p><strong>Category:</strong> <span id="productCategory"></span></p>
+
+        <!-- Delete Product Button -->
+        <button id="deleteProductButton" style="display: none;">Delete Product</button>
+    </div>
+
+    <!-- Buttons to Show All Product Names and IDs or Vendor Names and IDs -->
+    <button id="showAllProductsButton">Show All Products</button>
+    <button id="showAllVendorsButton">Show All Vendors</button>
+    <ul id="allProductsList" style="display: none;"></ul>
+    <ul id="allVendorsList" style="display: none;"></ul>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/deleteVendor.js"></script>
+</body>
+</html>

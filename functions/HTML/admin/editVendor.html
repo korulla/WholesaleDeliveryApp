@@ -6,45 +6,75 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="editvendorForm">
 
-        <label for="vendorName">Vendor Name</label>
-        <input type="text" name="vendorName" id="vendorName"><br>
+    <h1>Check and Edit Vendor/Product</h1>
 
-        <label for="vendorId">Vendor unique ID</label>
-        <input type="text" name="vendorId" id="vendorId"><br>
-
-        <label for="vendorLocation">Vendor Location</label>
-        <input type="text" name="vendorLocation" id="vendorLocation"><br>
-
-        <label for="vendorMob">Vendor Mobile number</label>
-        <input type="text" name="vendorMob" id="vendorMob"><br>
-
-        <label for="vendorEmail">Vendor Email adress</label>
-        <input type="text" name="vendorEmail" id="vendorEmail"><br>
-
-        <button type="submit">Add Vendor</button>
-
+    <!-- Check Vendor/Product Form -->
+    <form id="checkForm">
+        <label for="checkId">Enter Vendor/Product ID to Check</label>
+        <input type="text" name="checkId" id="checkId" required><br>
+        <label for="checkType">Select Type</label>
+        <select name="checkType" id="checkType">
+            <option value="vendor">Vendor</option>
+            <option value="product">Product</option>
+        </select><br>
+        <button type="submit">Check</button>
     </form>
 
     <hr>
 
-    <form id="editproductForm">
+    <!-- Display Vendor and Products Information -->
+    <div id="infoDisplay" style="display: none;">
+        <h2>Vendor Information:</h2>
+        <p><strong>Name:</strong> <span id="vendorName"></span></p>
+        <p><strong>Location:</strong> <span id="vendorLocation"></span></p>
+        <p><strong>Mobile Number:</strong> <span id="vendorMob"></span></p>
+        <p><strong>Email Address:</strong> <span id="vendorEmail"></span></p>
 
-        <label for="pvendorId">Enter the vendor ID</label>
-        <input type="text" name="pvendorId" id="productVendorId"><br>
+        <h2>Products:</h2>
+        <ul id="productList"></ul>
+    </div>
 
-        <label for="productName">Product Name</label>
-        <input type="text" name="productName" id="productName"><br>
+    <hr>
 
-        <label for="productPrice">Product Price</label>
-        <input type="text" name="productPrice" id="productPrice"><br>
-
-        <label for="productCategory">Product Category</label>
-        <input type="text" name="productCategory" id="productCategory"><br>
-        
-        <button type="submit">Add Product</button>
-        
+    <!-- Editing Form for Vendor -->
+    <form id="editVendorForm" style="display: none;">
+        <!-- Vendor editing fields -->
+        <label for="editVendorName">Edit Vendor Name</label>
+        <input type="text" name="editVendorName" id="editVendorName"><br>
+        <label for="editVendorLocation">Edit Vendor Location</label>
+        <input type="text" name="editVendorLocation" id="editVendorLocation"><br>
+        <label for="editVendorMob">Edit Vendor Mobile number</label>
+        <input type="text" name="editVendorMob" id="editVendorMob"><br>
+        <label for="editVendorEmail">Edit Vendor Email Address</label>
+        <input type="text" name="editVendorEmail" id="editVendorEmail"><br>
+        <button type="submit">Save Vendor Changes</button>
     </form>
+
+    <!-- Editing Form for Product -->
+    <form id="editProductForm" style="display: none;">
+        <!-- Product editing fields -->
+        <label for="editProductVendorId">Edit Product Vendor ID</label>
+        <input type="text" name="editProductVendorId" id="editProductVendorId"><br>
+        <label for="editProductName">Edit Product Name</label>
+        <input type="text" name="editProductName" id="editProductName"><br>
+        <label for="editProductPrice">Edit Product Price</label>
+        <input type="text" name="editProductPrice" id="editProductPrice"><br>
+        <label for="editProductCategory">Edit Product Category</label>
+        <input type="text" name="editProductCategory" id="editProductCategory"><br>
+        <button type="submit">Save Product Changes</button>
+    </form>
+
+
+    <h2>Edit the product or vendor Information</h2>
+    <!-- "Edit Vendor" and "Edit Product" buttons -->
+    <button id="editVendorButton">Edit Vendor</button>
+    <button id="editProductButton">Edit Product</button>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="/functions/Javascript/editVendor.js"></script>
+
 </body>
 </html>
