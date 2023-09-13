@@ -13,120 +13,110 @@ const firebaseConfig = {
  
   // Initialize firestore
   const db = firebase.firestore();
-        // Reference to Firestore collections
-        const ordersRef = db.collection("orders");
 
-        // Track selected order
-        let selectedOrderId = null;
 
-        // Event listener for order selection
-        document.getElementById("order-list").addEventListener("click", (event) => {
-            if (event.target.tagName === "BUTTON") {
-                // Get the selected order ID
-                selectedOrderId = event.target.dataset.orderId;
+  const ordersRef = firebase.firestore().collection("orders");
 
-                // Fetch and display order details for editing
-                displayEditOrder(selectedOrderId);
-            }
+  // Function to fetch and display orders
+  function displayOrders() {
+    const orderList = document.getElementById("order-list");
+    orderList.innerHTML = "";
+
+    ordersRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const orderData = doc.data();
+            const orderId = doc.id;
+
+            // Create an order item element
+            const orderItem = document.createElement("div");
+
+            // Get product names
+            const productNames = orderData.products.map(product => product.name).join(", ");
+
+            orderItem.innerHTML = `
+                <p><strong>Order ID:</strong> ${orderId}</p>
+                <p><strong>Total Amount:</strong> $${orderData.totalBillAmount}</p>
+                <p><strong>Products:</strong> ${productNames}</p>
+                <button class="edit-order-button" data-order-id="${orderId}">Edit</button>
+            `;
+
+            // Add an event listener to the edit button
+            const editButton = orderItem.querySelector(".edit-order-button");
+            editButton.addEventListener("click", () => {
+                openEditModal(orderId, orderData);
+            });
+
+            orderList.appendChild(orderItem);
         });
+    });
+}
 
-        // Event listener for updating an order
-        document.getElementById("update-order").addEventListener("click", () => {
-            // Get the updated customer name and order items
-            const updatedCustomerName = document.getElementById("customer-name").value;
-            const updatedOrderItems = [];
+  // Function to open the edit order modal
+  function openEditModal(orderId, orderData) {
+      const editOrderModal = document.getElementById("edit-order-modal");
+      const orderIdSpan = document.getElementById("order-id");
+      const editOrderAmountInput = document.getElementById("edit-order-amount");
+      const productQuantitiesList = document.getElementById("product-quantities");
+      const saveEditedOrderButton = document.getElementById("save-edited-order");
+      const closeEditModalButton = document.getElementById("close-edit-modal");
 
-            // Loop through the editable order items and update quantities
-            const editableItems = document.querySelectorAll(".editable-item");
-            editableItems.forEach((item) => {
-                const productId = item.dataset.productId;
-                const quantity = parseInt(item.querySelector(".editable-quantity").value);
-                updatedOrderItems.push({ productId, quantity });
-            });
+      // Populate the modal with the current order details
+      orderIdSpan.textContent = orderId;
+      editOrderAmountInput.value = orderData.totalBillAmount;
 
-            // Update the order in Firestore
-            updateOrder(selectedOrderId, updatedCustomerName, updatedOrderItems);
-        });
+      // Display products and quantities in the modal
+      productQuantitiesList.innerHTML = "";
+      for (const product of orderData.products) {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+              <p><strong>Product:</strong> ${product.name}</p>
+              <p><strong>Quantity:</strong> <input type="number" class="edit-product-quantity" value="${product.quantity}" min="1"></p>
+          `;
+          productQuantitiesList.appendChild(listItem);
+      }
 
-        // Function to display orders
-        function displayOrders() {
-            ordersRef.get().then((querySnapshot) => {
-                const orderList = document.getElementById("order-list");
-                orderList.innerHTML = "";
+      // Add an event listener to the "Save" button
+      saveEditedOrderButton.addEventListener("click", () => {
+          const editedTotalAmount = editOrderAmountInput.value;
+          const editedProducts = [];
 
-                querySnapshot.forEach((doc) => {
-                    const orderId = doc.id;
-                    const customerName = doc.data().customerName;
-                    const orderButton = document.createElement("button");
-                    orderButton.textContent = `Order ${orderId} (${customerName})`;
-                    orderButton.dataset.orderId = orderId;
-                    orderList.appendChild(orderButton);
-                });
-            });
-        }
+          // Update quantities for each product
+          const editProductQuantityInputs = document.querySelectorAll(".edit-product-quantity");
+          editProductQuantityInputs.forEach((input, index) => {
+              const newQuantity = parseInt(input.value);
+              orderData.products[index].quantity = newQuantity;
+              editedProducts.push(orderData.products[index]);
+          });
 
-        // Function to display an order for editing
-        function displayEditOrder(orderId) {
-            const editOrderDiv = document.getElementById("edit-order");
-            editOrderDiv.style.display = "block";
+          // Update the order details in Firebase
+          updateOrder(orderId, parseFloat(editedTotalAmount), editedProducts);
+      });
 
-            // Fetch the order details
-            ordersRef.doc(orderId).get().then((doc) => {
-                const orderData = doc.data();
-                const customerName = orderData.customerName;
-                const orderItems = orderData.items;
+      // Add an event listener to the "Close" button
+      closeEditModalButton.addEventListener("click", () => {
+          editOrderModal.style.display = "none";
+      });
 
-                // Display customer name
-                document.getElementById("customer-name").value = customerName;
+      // Display the edit order modal
+      editOrderModal.style.display = "block";
+  }
 
-                // Display editable order items
-                const editItemsList = document.getElementById("edit-items");
-                editItemsList.innerHTML = "";
+  // Function to update order details in Firebase
+  function updateOrder(orderId, editedTotalAmount, editedProducts) {
+      ordersRef.doc(orderId).update({
+          totalBillAmount: editedTotalAmount,
+          products: editedProducts
+      })
+      .then(() => {
+          alert("Order updated successfully");
+          document.getElementById("edit-order-modal").style.display = "none";
+          displayOrders();
+      })
+      .catch((error) => {
+          console.error("Error updating order: ", error);
+          alert("Error updating order. Please try again.");
+      });
+  }
 
-                orderItems.forEach((item) => {
-                    const productId = item.productId;
-                    const quantity = item.quantity;
-
-                    const listItem = document.createElement("li");
-                    listItem.innerHTML = `
-                        Product ID: ${productId}<br>
-                        Quantity: <input type="number" class="editable-quantity" value="${quantity}">
-                    `;
-                    listItem.className = "editable-item";
-                    listItem.dataset.productId = productId;
-                    editItemsList.appendChild(listItem);
-                });
-            });
-        }
-
-        // Function to update an order
-        function updateOrder(orderId, customerName, orderItems) {
-            const updatedOrder = {
-                customerName: customerName,
-                items: orderItems
-            };
-
-            // Update the order in Firestore
-            ordersRef.doc(orderId).update(updatedOrder).then(() => {
-                alert("Order updated successfully!");
-                // Clear the edit order form
-                clearEditOrderForm();
-                // Refresh the order list
-                displayOrders();
-            }).catch((error) => {
-                console.error("Error updating order: ", error);
-                alert("Error updating order. Please try again.");
-            });
-        }
-
-        // Function to clear the edit order form
-        function clearEditOrderForm() {
-            const editOrderDiv = document.getElementById("edit-order");
-            editOrderDiv.style.display = "none";
-            document.getElementById("customer-name").value = "";
-            document.getElementById("edit-items").innerHTML = "";
-            selectedOrderId = null;
-        }
-
-        // Call the function to display orders when the page loads
-        displayOrders();
+  // Call the function to display orders when the page loads
+  displayOrders();

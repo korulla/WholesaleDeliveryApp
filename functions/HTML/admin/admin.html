@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../Styles/adminhome.css">
 </head>
 <body>
+  
+  <div class="nav-bar">
+  
+    <button id="homeButton" class="navBarButton">Go To home</button>
+
+  </div>
+  
     <form id="adminLoginForm">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
@@ -21,10 +29,11 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <!-- <a href="adminmanage.html"><button class="btn btn-primary">Submit</button></a> -->
     </form>
+    <a href="adminmanage.html"><button class="btn btn-primary">Submit</button></a>
 
-    <script src="index.js"></script>
+    <script src="/functions/Javascript/homeNav.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
 </body>
 </html>

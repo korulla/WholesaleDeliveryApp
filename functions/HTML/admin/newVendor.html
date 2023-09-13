@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add new Vendor or Product</title>
+    <link rel="stylesheet" href="/functions/Styles/adminhome.css">
 </head>
 <body>
+
+    <div class="nav-bar">
+        <a href="./adminmanage.html"><button>Go back To edit selection</button></a>
+        <a href="./adminvendor.html"><button>Go back previous section</button></a>
+        <button id="homeButton" class="navBarButton">Go To home</button>
+    </div>
+
     <h1>Add Vendor and Product</h1>
     <form id="vendorForm">
 
@@ -55,5 +63,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
     <script src="/functions/Javascript/newVendor.js" type="module"></script>
+    <script src="/functions/Javascript/homeNav.js" type="module"></script>
+
 </body>
 </html>
