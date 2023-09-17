@@ -6,34 +6,111 @@
     <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="../../Styles/adminhome.css">
+
+
+
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+rel="stylesheet"
+/>
+
+
 </head>
 <body>
-  
-  <div class="nav-bar">
-  
-    <button id="homeButton" class="navBarButton">Go To home</button>
 
-  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top  " style="background-color: #e3f2fd;">
+    <!-- Container wrapper -->
+    <div class="container" style="justify-content: center;">  
   
-    <form id="adminLoginForm">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <!-- <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  
+            <a href="../user/user.html">
+                <button type="button" class="btn btn-primary me-0">
+              Login as Truck Driver
+            </button>
+        </a>
+        <a href="../../../index.html"><button type="button" class="btn btn-link px-3 me-2">
+          Home
+        </button></a>
+  
+  
+  
+    </div>
+  
+    
+        <!-- Left links -->
+        <!-- <div class="d-flex align-items-center">
+
+
+  
         </div> -->
-        <!-- <a href="adminmanage.html"><button class="btn btn-primary">Submit</button></a> -->
-    </form>
-    <a href="adminmanage.html"><button class="btn btn-primary">Submit</button></a>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 
-    <script src="../../Javascript/homeNav.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
+  <!-- Login Section   -->
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+            class="img-fluid" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <form>
+
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin Sign In</p>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="form1Example13" class="form-control form-control-lg" />
+              <label class="form-label" for="form1Example13">Email address</label>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password" id="form1Example23" class="form-control form-control-lg" />
+              <label class="form-label" for="form1Example23">Password</label>
+            </div>
+  
+            <div class="d-flex justify-content-around align-items-center mb-4">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                <label class="form-check-label" for="form1Example3"> Remember me </label>
+              </div>
+              <p>Forgot password?</p>
+            </div>
+  
+            <!-- Submit button -->
+  
+          </form>
+          <a href="adminmanage.html"><button class="btn btn-primary btn-lg btn-block">Sign in</button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+></script>
+
 </body>
 </html>

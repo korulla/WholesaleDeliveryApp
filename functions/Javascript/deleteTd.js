@@ -1,3 +1,4 @@
+
 const firebaseConfig = {
     apiKey: "AIzaSyCRP0v9HrdAK09hN4Znn2dYOSd4aZm8T80",
     authDomain: "wholesale-delivery-app-5327f.firebaseapp.com",
@@ -19,51 +20,77 @@ const firebaseConfig = {
   const confirmDeleteButton = document.getElementById('confirmDeleteButton');
   const truckDriverDetails = document.getElementById('truckDriverDetails');
   
+  // Add an event listener to the "Show Details" button
   showDetailsButton.addEventListener('click', () => {
-      const idToDelete = document.getElementById('deleteTdId').value;
+    // Get the phone number to search for from the input field
+    const phoneNumberToSearch = document.getElementById('deleteTdId').value;
   
-      // Check if the document exists
-      db.collection('truckDrivers')
-          .doc(idToDelete)
-          .get()
-          .then((doc) => {
-              if (doc.exists) {
-                  const data = doc.data();
-                  truckDriverDetails.innerHTML = `
-                      <p><strong>Name:</strong> ${data.name}</p>
-                      <p><strong>Mobile:</strong> ${data.mobileNumber}</p>
-                      <p><strong>Address:</strong> ${data.address}</p>
-                      <p><strong>License:</strong> ${data.drivingLicense}</p>
-                  `;
-                  confirmDeleteButton.disabled = false;
-                  truckDriverDetails.classList.remove('error-message');
-              } else {
-                  truckDriverDetails.innerHTML = '<p class="error-message">Truck driver with the specified ID not found.</p>';
-                  confirmDeleteButton.disabled = true;
-                  truckDriverDetails.classList.add('error-message');
-              }
-          })
-          .catch((error) => {
-              console.error('Error getting document:', error);
+    // Query the Firestore collection for documents with the specified phone number
+    db.collection('truckDrivers')
+      .where('phoneNumber', '==', phoneNumberToSearch)
+      .get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          // If documents with the matching phone number are found
+          let detailsHTML = '';
+  
+          // Iterate through the matching documents and display their details
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            detailsHTML += `
+              <p><strong>Name:</strong> ${data.name}</p>
+              <p><strong>Mobile:</strong> ${data.phoneNumber}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Address:</strong> ${data.address}</p>
+              <p><strong>Vehicle Number:</strong> ${data.vehicleNumber}</p>
+            `;
           });
+  
+          // Display the details and enable the "Delete" button
+          truckDriverDetails.innerHTML = detailsHTML;
+          confirmDeleteButton.disabled = false;
+          truckDriverDetails.classList.remove('error-message');
+        } else {
+          // If no matching documents are found
+          truckDriverDetails.innerHTML = '<p class="error-message">No truck drivers with the specified phone number found.</p>';
+          confirmDeleteButton.disabled = true;
+          truckDriverDetails.classList.add('error-message');
+        }
+      })
+      .catch((error) => {
+        console.error('Error querying truck drivers:', error);
+      });
   });
   
+  // Add an event listener to the "Delete" button
   confirmDeleteButton.addEventListener('click', () => {
-      const idToDelete = document.getElementById('deleteTdId').value;
+    // Get the phone number to delete from the input field
+    const phoneNumberToDelete = document.getElementById('deleteTdId').value;
   
-      // Delete the document
-      db.collection('truckDrivers')
-          .doc(idToDelete)
-          .delete()
-          .then(() => {
+    // Query the Firestore collection for documents with the specified phone number
+    db.collection('truckDrivers')
+      .where('phoneNumber', '==', phoneNumberToDelete)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // Delete each matching document
+          doc.ref.delete()
+            .then(() => {
               console.log('Document successfully deleted');
-              truckDriverDetails.innerHTML = '';
-              confirmDeleteButton.disabled = true;
-              truckDriverDetails.classList.remove('error-message');
-          })
-          .catch((error) => {
+            })
+            .catch((error) => {
               console.error('Error deleting document:', error);
-          });
+            });
+        });
+  
+        // Clear the details display and disable the "Delete" button
+        truckDriverDetails.innerHTML = '';
+        confirmDeleteButton.disabled = true;
+        truckDriverDetails.classList.remove('error-message');
+      })
+      .catch((error) => {
+        console.error('Error querying truck drivers:', error);
+      });
   });
 
   // Function to toggle the display of all truck driver details
@@ -96,9 +123,10 @@ function toggleAllTruckDrivers() {
                 // Create list item with all details
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `<strong>Name:</strong> ${truckDriverData.name || ''}<br>` +
-                                    `<strong>ID:</strong> ${doc.id}<br>` +
-                                    `<strong>Mobile Number:</strong> ${truckDriverData.mobileNumber || ''}<br>` +
-                                    `<strong>Driving License:</strong> ${truckDriverData.drivingLicense || ''}<br>` +
+                                    // `<strong>ID:</strong> ${doc.id}<br>` +
+                                    `<strong>Mobile Number:</strong> ${truckDriverData.phoneNumber || ''}<br>` +
+                                    `<strong>Email:</strong> ${truckDriverData.email || ''}<br>` +
+                                    `<strong>Vehicle Number:</strong> ${truckDriverData.vehicleNumber || ''}<br>` +
                                     `<strong>Address:</strong> ${truckDriverData.address || ''}`;
                 truckDriverList.appendChild(listItem);
             });
@@ -109,4 +137,4 @@ function toggleAllTruckDrivers() {
   }
 
 const showAllTdButton = document.getElementById('showAllTdButton');
-showAllTdButton.addEventListener('click', toggleAllTruckDrivers);
+showAllTdButton.addEventListener('click', toggleAllTruckDrivers); 

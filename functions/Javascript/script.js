@@ -76,11 +76,10 @@ const firebaseConfig = {
              querySnapshot.forEach((doc) => {
                  const data = doc.data();
                  detailsHtml += `
-                     <p><strong>ID:</strong> ${doc.id}</p>
                      <p><strong>Name:</strong> ${data.name}</p>
-                     <p><strong>Mobile:</strong> ${data.mobileNumber}</p>
+                     <p><strong>Mobile:</strong> ${data.phoneNumber}</p>
                      <p><strong>Address:</strong> ${data.address}</p>
-                     <p><strong>License:</strong> ${data.drivingLicense}</p>
+                     <p><strong>License:</strong> ${data.vehicleNumber}</p>
                      <hr>
                  `;
              });

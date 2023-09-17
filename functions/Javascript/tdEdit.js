@@ -81,7 +81,7 @@ function showAllTruckDrivers() {
                                   // `<strong>ID:</strong> ${doc.id}<br>` +
                                   `<strong>Mobile Number:</strong> ${truckDriverData.phoneNumber || ''}<br>` +
                                   `<strong>Email:</strong> ${truckDriverData.email || ''}<br>` +
-                                  `<strong>Driving License:</strong> ${truckDriverData.vehicleNumber || ''}<br>` +
+                                  `<strong>Vehicle Number:</strong> ${truckDriverData.vehicleNumber || ''}<br>` +
                                   `<strong>Address:</strong> ${truckDriverData.address || ''}`;
               truckDriverList.appendChild(listItem);
           });
@@ -119,7 +119,7 @@ function editTruckDriverDetails() {
   // }
 
   if (updatedDrivingLicense !== '') {
-    updatedData.drivingLicense = updatedDrivingLicense;
+    updatedData.vehicleNumber = updatedDrivingLicense;
   }
 
   if (updatedAddress !== '') {
