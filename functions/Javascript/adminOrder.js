@@ -36,6 +36,7 @@ const firebaseConfig = {
             orderItem.innerHTML = `
                 <p><strong>Order ID:</strong> ${orderId}</p>
                 <p><strong>Total Amount:</strong> $${orderData.totalBillAmount}</p>
+                <p><strong>Truck Driver Email:</strong> ${orderData.Truckdriver}</p>
                 <p><strong>Products:</strong> ${productNames}</p>
                 <button class="edit-order-button" data-order-id="${orderId}">Edit</button>
             `;
