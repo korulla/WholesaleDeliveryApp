@@ -1,0 +1,18 @@
+.container{
+    margin-left: 0;
+}
+
+#hero {
+    width: 100%;
+    height: 100vh;
+    background-color: antiquewhite;
+    background: url("https://img.freepik.com/premium-photo/transport-logistic-manager-checking-control-logistic-network-distribution-customer_34200-864.jpg?w=2000");
+    background-size: cover;
+  }
+
+  /* user.html style */
+
+.bgColor{
+    background-color: antiquewhite;
+    margin-top: 51px;
+}

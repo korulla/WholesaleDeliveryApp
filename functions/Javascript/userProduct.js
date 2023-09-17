@@ -214,7 +214,8 @@ async function updateCartUI() {
              const order = {
                  products: [],
                  vendorDetails: selectedVendors, // Now it's an array of vendor IDs
-                 totalBillAmount: calculateTotalPrice()
+                 totalBillAmount: calculateTotalPrice(),
+                 Truckdriver:document.getElementById('temail').value
              };
  
              // Create an array to store promises for fetching product names
@@ -247,6 +248,7 @@ async function updateCartUI() {
                              cart = {};
                              document.getElementById("cart-items").innerHTML = "";
                              document.getElementById("total-price").textContent = "0.00";
+
                              selectedVendors = []; // Clear the selected vendors
                          });
                  })

@@ -24,21 +24,22 @@
 
     <!-- Display Truck Driver Details -->
     <div id="truckDriverResult" style="display: none;">
-        <h4>Truck Driver Details:</h4>
+        <h4>Truck Driver Details</h4>
         <p><strong>Name:</strong> <span id="tdName"></span></p>
-        <p><strong>ID:</strong> <span id="tdId"></span></p>
-        <p><strong>Mobile Number:</strong> <span id="tdMobileNumber"></span></p>
+        <!-- <p><strong>ID:</strong> <span id="tdId"></span></p> -->
+        <p><strong>Mobile Number:</strong> <span id="tdMobileNumber"></span></p> 
+        <p><strong>Email:</strong> <span id="tdEmail"></span></p> 
         <p><strong>Driving License:</strong> <span id="tdDrivingLicense"></span></p>
         <p><strong>Address:</strong> <span id="tdAddress"></span></p>
-        <button type="button" id="editTdButton">Edit Truck Driver</button>
+        <button type="button" id="editTdButton">Edit Truck Driver</button><br>
     </div>
 
     <!-- Edit Truck Driver Form -->
     <form id="editTruckDriverForm" style="display: none;">
         <label for="editTdName">Name</label>
         <input type="text" name="addTd" id="editTdName"><br>
-        <label for="editTdMobileNumber">Mobile Number</label>
-        <input type="text" name="addTdMobileNumber" id="editTdMobileNumber"><br>
+        <!-- <label for="editTdMobileNumber" style="display: none;">Mobile Number</label>
+        <input type="text" name="addTdMobileNumber" id="editTdMobileNumber" style="display: none;"><br> -->
         <label for="editTdDrivingLicense">Driving License</label>
         <input type="text" name="addTdDrivingLicense" id="editTdDrivingLicense"><br>
         <label for="editTdAddress">Address</label>
@@ -49,7 +50,7 @@
     <!-- Show All Truck Drivers -->
     <button type="button" id="showAllTdButton">Show All Details</button>
     <div id="allTruckDrivers" style="display: none;">
-        <h4>All Truck Drivers:</h4>
+        <h4>All Truck Drivers</h4>
         <ul id="truckDriverList"></ul>
     </div>
 

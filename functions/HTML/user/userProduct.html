@@ -36,6 +36,7 @@
         <h2>Cart</h2>
         <ul id="cart-items"></ul>
         <p>Total Price: $<span id="total-price">0.00</span></p>
+        <input style="display: none;" id="temail">
         <button id="place-order">Place Order</button>
     </div>
 
@@ -44,5 +45,49 @@
     <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
     <script src="../../Javascript/userProduct.js" type="module"></script>
     <script src="../../Javascript/homeNav.js"></script>
+    <script type="module">  
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCRP0v9HrdAK09hN4Znn2dYOSd4aZm8T80",
+          authDomain: "wholesale-delivery-app-5327f.firebaseapp.com",
+          databaseURL: "https://wholesale-delivery-app-5327f-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "wholesale-delivery-app-5327f",
+          storageBucket: "wholesale-delivery-app-5327f.appspot.com",
+          messagingSenderId: "505301345310",
+          appId: "1:505301345310:web:39090ed1bd798c91c63a0f",
+          measurementId: "G-8LTQKYEJTE"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        const db = getDatabase();
+        
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/auth.user
+              const uid = user.uid;
+              console.log(user.email)
+              document.getElementById('temail').value=user.email
+              // ...
+            } else {
+              // User is signed out
+              // ...
+            }
+          });
+       
+      
+      
+      </script>
 </body>
 </html>

@@ -1,51 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TD login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../Styles/adminhome.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truck Driver Login</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="../../Styles/index.css">
 </head>
 <body>
 
-  <div class="nav-bar">
-    
-    <button id="homeButton" class="navBarButton">Go To home</button>
-  
+<!-- NavBar sectiom -->
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top  " style="background-color: #e3f2fd;">
+  <!-- Container wrapper -->
+  <div class="container">  
+
+
+          <a href="../admin/admin.html">
+              <button type="button" class="btn btn-primary me-0">
+            Login as Admin
+          </button>
+      </a>
+
+
+
   </div>
 
-  <form id="adminLoginForm">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <!-- <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
-    <!-- <a href="adminmanage.html"><button class="btn btn-primary">Submit</button></a> -->
-</form>
-<a href="userProduct.html"><button class="btn btn-primary">Submit</button></a>
-
-  <!-- Add the reCAPTCHA widget container -->
-  <!-- <div id="recaptcha-container"></div> -->
   
-  <!-- Include Firebase initialization script here -->
+      <!-- Left links -->
+      <div class="d-flex align-items-center">
+        <a href="../../../index.html"><button type="button" class="btn btn-link px-3 me-2">
+          Home
+        </button></a>
+        <a href="./truckDriverSignup.html"><button type="button" class="btn btn-primary me-3">
+          Sign up
+        </button></a>
 
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
 
-  <!-- Include your scripts -->
-      <script src="/functions/Javascript/script.js"></script> 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-      <script src="../../Javascript/userLogin.js" type="module"></script>
-      <script src="../../Javascript/homeNav.js"></script>
+
+
+  <!-- .............................................................
+                  SIGN IN SECTION 
+  ............................................................. -->
+  <section class="vh-100 bgColor">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+
+            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Truck Driver Sign in</p>
+  
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="text" id="email" class="form-control form-control-lg bg-light"
+                placeholder="Enter phone number" />
+              <label  class="form-label" for="form3Example3">Phone number</label>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="pass" class="form-control form-control-lg bg-light"
+                placeholder="Enter password" />
+              <label class="form-label" for="form3Example4">Password</label>
+            </div>
+  
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Checkbox -->
+              <div class="form-check mb-0">
+                <input  class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                <label class="form-check-label" for="form2Example3">
+                  Remember me
+                </label>
+              </div>
+              <p  class="text-body">Forgot password?</a>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <input class="btn btn-primary btn-lg" type="submit" id="submit">
+              
+              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="truckDriverSignup.html"
+                  class="link-danger">Register</a></p>
+                
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+<script src="../../Javascript/tdLogin.js" type="module"></script>
+
+<!-- <script type="module">  
+</script> -->
+
 </body>
 </html>

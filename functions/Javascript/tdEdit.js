@@ -14,28 +14,38 @@ const firebaseConfig = {
   // Initialize firestore
   const db = firebase.firestore();
 
-// Function to check truck driver details by ID
-function checkTruckDriverById() {
-  const idToCheck = document.getElementById('checkTdId').value;
+// Function to check truck driver details by phone number
+function checkTruckDriverByPhoneNumber() {
+  const phoneNumberToCheck = document.getElementById('checkTdId').value;
   const truckDriverResult = document.getElementById('truckDriverResult');
+  console.log(phoneNumberToCheck);
 
-  db.collection('truckDrivers').doc(idToCheck).get()
-      .then((doc) => {
-          if (doc.exists) {
-              const truckDriverData = doc.data();
-              document.getElementById('tdName').textContent = truckDriverData.name || '';
-              document.getElementById('tdId').textContent = idToCheck;
-              document.getElementById('tdMobileNumber').textContent = truckDriverData.mobileNumber || '';
-              document.getElementById('tdDrivingLicense').textContent = truckDriverData.drivingLicense || '';
-              document.getElementById('tdAddress').textContent = truckDriverData.address || '';
-              truckDriverResult.style.display = 'block';
-          } else {
-              alert('Truck driver with the specified ID not found');
-          }
-      })
-      .catch((error) => {
-          console.error('Error getting truck driver document:', error);
-      });
+  // Query the 'truckDrivers' collection for the specified phone number
+  db.collection('truckDrivers')
+    .where('phoneNumber', '==', phoneNumberToCheck)
+    .get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // There is a truck driver with the specified phone number
+        const doc = querySnapshot.docs[0];
+        const truckDriverData = doc.data();
+
+        document.getElementById('tdName').textContent = truckDriverData.name || '';
+        // document.getElementById('tdId').textContent = doc.id; // This sets the ID of the document.
+        document.getElementById('tdMobileNumber').textContent = truckDriverData.phoneNumber || '';
+        document.getElementById('tdEmail').textContent = truckDriverData.email || '';
+        document.getElementById('tdDrivingLicense').textContent = truckDriverData.vehicleNumber || '';
+        document.getElementById('tdAddress').textContent = truckDriverData.address || '';
+
+        truckDriverResult.style.display = 'block';
+      } else {
+        // No truck driver with the specified phone number was found
+        alert('Truck driver with the specified phone number not found');
+      }
+    })
+    .catch((error) => {
+      console.error('Error getting truck driver document:', error);
+    });
 }
 
 // Function to toggle the display of all truck driver details
@@ -68,9 +78,10 @@ function showAllTruckDrivers() {
               // Create list item with all details
               const listItem = document.createElement('li');
               listItem.innerHTML = `<strong>Name:</strong> ${truckDriverData.name || ''}<br>` +
-                                  `<strong>ID:</strong> ${doc.id}<br>` +
-                                  `<strong>Mobile Number:</strong> ${truckDriverData.mobileNumber || ''}<br>` +
-                                  `<strong>Driving License:</strong> ${truckDriverData.drivingLicense || ''}<br>` +
+                                  // `<strong>ID:</strong> ${doc.id}<br>` +
+                                  `<strong>Mobile Number:</strong> ${truckDriverData.phoneNumber || ''}<br>` +
+                                  `<strong>Email:</strong> ${truckDriverData.email || ''}<br>` +
+                                  `<strong>Driving License:</strong> ${truckDriverData.vehicleNumber || ''}<br>` +
                                   `<strong>Address:</strong> ${truckDriverData.address || ''}`;
               truckDriverList.appendChild(listItem);
           });
@@ -89,12 +100,12 @@ editTdButton.addEventListener('click', () => {
 // Function to edit truck driver details
 function editTruckDriverDetails() {
   const updatedName = document.getElementById('editTdName').value;
-  const updatedMobileNumber = document.getElementById('editTdMobileNumber').value;
+  // const updatedMobileNumber = document.getElementById('editTdMobileNumber').value;
   const updatedDrivingLicense = document.getElementById('editTdDrivingLicense').value;
   const updatedAddress = document.getElementById('editTdAddress').value;
 
-  // Get the current truck driver ID
-  const truckDriverId = document.getElementById('tdId').textContent;
+  // Get the current truck driver phone number
+  const truckDriverPhoneNumber = document.getElementById('tdMobileNumber').textContent;
 
   // Create an object to store the updated data
   const updatedData = {};
@@ -103,9 +114,9 @@ function editTruckDriverDetails() {
     updatedData.name = updatedName;
   }
 
-  if (updatedMobileNumber !== '') {
-    updatedData.mobileNumber = updatedMobileNumber;
-  }
+  // if (updatedMobileNumber !== '') {
+  //   updatedData.phoneNumber = updatedMobileNumber;
+  // }
 
   if (updatedDrivingLicense !== '') {
     updatedData.drivingLicense = updatedDrivingLicense;
@@ -117,8 +128,16 @@ function editTruckDriverDetails() {
 
   // Update the truck driver document with the new data
   db.collection('truckDrivers')
-    .doc(truckDriverId)
-    .update(updatedData)
+    .where('phoneNumber', '==', truckDriverPhoneNumber)
+    .get()
+    .then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        const doc = querySnapshot.docs[0];
+        return doc.ref.update(updatedData);
+      } else {
+        alert('Truck driver with the specified phone number not found');
+      }
+    })
     .then(() => {
       alert('Truck driver details updated successfully!');
       // Clear the form after a successful update
@@ -126,7 +145,7 @@ function editTruckDriverDetails() {
       // Hide the edit form
       document.getElementById('editTruckDriverForm').style.display = 'none';
       // Refresh the displayed details
-      checkTruckDriverById();
+      checkTruckDriverByPhoneNumber();
     })
     .catch((error) => {
       console.error('Error updating truck driver details: ', error);
@@ -139,7 +158,7 @@ confirmEditTdButton.addEventListener('click', editTruckDriverDetails);
 
 // Event listeners
 const checkTdButton = document.getElementById('checkTdButton');
-checkTdButton.addEventListener('click', checkTruckDriverById);
+checkTdButton.addEventListener('click', checkTruckDriverByPhoneNumber);
 
 const showAllTdButton = document.getElementById('showAllTdButton');
 showAllTdButton.addEventListener('click', toggleAllTruckDrivers);
